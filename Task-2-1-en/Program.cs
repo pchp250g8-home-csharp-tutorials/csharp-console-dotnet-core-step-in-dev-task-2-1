@@ -3,7 +3,7 @@ uint b; // upper limit of safe readings
 uint n; // interference level value
 uint c = 0; // counter for safe readings
 uint d = 0; // variable to store the length of the safe reading segment
-uint m; // maximum length of the safe reading segment
+uint m = 0; // maximum length of the safe reading segment
 // Data input
 Console.WriteLine("Enter the safety limits for readings");
 Console.Write("Lower limit: ");
@@ -24,18 +24,18 @@ while (n != 0) // Input readings until the value is 0
         d = c; // If readings are unsafe, store the count of safe readings
         c = 0; // and reset the counter
     }
+    /* Determine the maximum length of the segment
+    where readings are safe. If the counter was reset
+    (the chain of safe data was interrupted), the maximum length
+    is the old counter value (variable "d"). 
+    Otherwise, it is the current (new) counter value (variable "c").
+    */
+    if (d > c)
+        m = d;
+    else
+        m = c;
     uint.TryParse(Console.ReadLine(), out n); // input the next data point
 }
-/* Determine the maximum length of the segment
-where readings are safe. If the counter was reset
-(the chain of safe data was interrupted), the maximum length
-is the old counter value (variable "d"). 
-Otherwise, it is the current (new) counter value (variable "c").
-*/
-if (d > c)
-    m = d;
-else
-    m = c;
 // Output information to the screen
 Console.WriteLine("Length of the interval where all readings are safe: " + m);
 Console.Read(); // Pause screen output until "Enter" is pressed"
