@@ -45,5 +45,5 @@ while (n != 0) // Input readings until the value is 0
     uint.TryParse(Console.ReadLine(), out n); // input the next data point
 }
 // Output information to the screen
-Console.WriteLine("Length of the interval where all readings are safe: " + m);
+Console.WriteLine($"Length of the interval where all readings are safe: {max_len}");
 Console.Read(); // Pause screen output until "Enter" is pressed"
